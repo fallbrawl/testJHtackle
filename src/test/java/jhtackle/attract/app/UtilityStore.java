@@ -22,10 +22,12 @@ public class UtilityStore {
         drv.findElement(By.id("submit_form_button_login")).click();
     }
 
-    public static boolean checkTitle(WebDriver drv, String URLtitle) {
+    public static boolean checkTitle(WebDriver drv, String URLtitle, String whatWasTested, String errorMsg) {
         if (drv.getTitle().equals(URLtitle)) {
+            System.out.println(whatWasTested + "is ok!");
             return true;
         } else {
+            System.out.println(errorMsg + "is failed!");
             return false;
         }
     }
@@ -40,10 +42,10 @@ public class UtilityStore {
         }
     }
 
-    public static void documentFirstStep(WebDriver drv, String URL, String value1, String value2) {
+    public static void documentFirstStep(WebDriver drv, String URL) {
         drv.get(URL);
-        drv.findElement(By.id("s-name_user_info")).sendKeys(value1);
-        drv.findElement(By.id("b-name_user_info")).sendKeys(value2);
+        drv.findElement(By.id("s-name_user_info")).sendKeys("lllooool");
+        drv.findElement(By.id("b-name_user_info")).sendKeys("lllooool");
         drv.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         drv.findElement(By.className("btn-primary")).click();
 
@@ -53,10 +55,10 @@ public class UtilityStore {
         WebDriverWait wait = new WebDriverWait(wow, howLong);
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("loader_wrapper")));
-        System.out.println("$$$$$$$$$$$$$$Loader is begun his work!$$$$$$$$$$$$$$$$");
+        System.out.println("/n$$$$$$$$$$$$$$Loader is begun his work!$$$$$$$$$$$$$$$$");
 
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("loader_wrapper")));
-        System.out.println("$$$$$$$$$$$$$$Loader has end his work!$$$$$$$$$$$$$$$$");
+        System.out.println("/n$$$$$$$$$$$$$$Loader has end his work!$$$$$$$$$$$$$$$$");
     }
 
     public static void documentSecondStep(WebDriver drv) {
@@ -93,9 +95,9 @@ public class UtilityStore {
 
         List<WebElement> needed_but = drv.findElements(By.className("btn-primary"));
         System.out.println("Size of List: " + needed_but.size());
-        for (int i = 0; i < needed_but.size(); i++) {
+        for (WebElement aNeeded_but : needed_but) {
 
-            System.out.println("Classes in List: " + needed_but.get(i).getText());
+            System.out.println("Classes in List: " + aNeeded_but.getText());
         }
 
         WebElement wow = needed_but.get(2);
@@ -105,7 +107,6 @@ public class UtilityStore {
 
         waitForWrapper(drv, 2);
         drv.findElement(By.id("autocomplete_document_product")).sendKeys("n", Keys.ARROW_DOWN, Keys.ENTER);
-        // WebDriverWait wait = new WebDriverWait(wow, howLong);
         if ((drv.findElement(By.className("autocomplete-suggestion")).isDisplayed())) {
             drv.findElement(By.id("autocomplete_document_product")).sendKeys(Keys.ARROW_DOWN);
         }

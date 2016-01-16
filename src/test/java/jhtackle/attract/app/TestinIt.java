@@ -14,9 +14,15 @@ public class TestinIt {
     {
         WebDriver driver = new FirefoxDriver();
         UtilityStore.login(driver,"http://invoicedev.php.attractgroup.com/public/login", "pavel.a@attractgroup.com", "zombie");
-        UtilityStore.documentFirstStep(driver, "http://invoicedev.php.attractgroup.com/public/document/add", "wow5", "wow4");
+        UtilityStore.checkTitle(driver, "http://invoicedev.php.attractgroup.com/public/", "Login", "Login");
+
+        UtilityStore.documentFirstStep(driver, "http://invoicedev.php.attractgroup.com/public/document/add");
+        UtilityStore.checkTitle(driver, "http://invoicedev.php.attractgroup.com/public/document/show/238", "First step", "First step");
+
         UtilityStore.documentSecondStep(driver);
+        UtilityStore.checkTitle(driver, "http://invoicedev.php.attractgroup.com/public/document/show/238", "Second step", "Second step");
         Assert.assertTrue(true);
+
       //  Assert.assertTrue(UtilityStore.checkTitle(driver,"Invoice"));
        // Assert.assertTrue(UtilityStore.checkTextPresence(driver));
 
