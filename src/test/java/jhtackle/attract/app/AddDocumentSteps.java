@@ -9,8 +9,8 @@ import java.util.concurrent.TimeUnit;
  * Created by paul on 16.01.16.
  */
 public class AddDocumentSteps {
-    public static void documentFirstStep(WebDriver drv, String URL) {
-        drv.get(URL);
+    public static void documentFirstStep(WebDriver drv) {
+        drv.get("http://invoicedev.php.attractgroup.com/public/document/add");
         drv.findElement(By.id("s-name_user_info")).sendKeys("lllooool");
         drv.findElement(By.id("b-name_user_info")).sendKeys("lllooool");
         drv.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);

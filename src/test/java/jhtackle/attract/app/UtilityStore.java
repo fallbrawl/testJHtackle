@@ -24,16 +24,16 @@ public class UtilityStore {
 
     public static boolean checkTitle(WebDriver drv, String URLtitle, String whatWasTested, String errorMsg) {
         if (drv.getTitle().equals(URLtitle)) {
-            System.out.println(whatWasTested + "is ok!");
+            System.out.println(whatWasTested + " is ok!");
             return true;
         } else {
-            System.out.println(errorMsg + "is failed!");
+            System.out.println(errorMsg + " is failed!");
             return false;
         }
     }
 
-    public static boolean checkTextPresence(WebDriver drv) {
-        if (drv.getPageSource().contains("Шаг 2")) {
+    public static boolean checkTextPresence(WebDriver drv,String textPresence) {
+        if (drv.getPageSource().contains(textPresence)) {
             System.out.println("Text is present!");
             return true;
         } else {
@@ -88,7 +88,7 @@ public class UtilityStore {
 
         waitForWrapper(drv, 2);
 
-        drv.findElement(By.className("icon_in_big")).click();
+        //drv.findElement(By.className("icon_in_big")).click();
 
         waitForWrapper(drv, 2);
 

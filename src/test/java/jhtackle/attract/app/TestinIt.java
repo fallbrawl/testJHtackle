@@ -8,28 +8,26 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 
 public class TestinIt {
-   @Test
+    @Test
     public void loginAndAddDocument()
 
     {
         WebDriver driver = new FirefoxDriver();
-        UtilityStore.login(driver,"http://invoicedev.php.attractgroup.com/public/login", "pavel.a@attractgroup.com", "zombie");
-        UtilityStore.checkTitle(driver, "http://invoicedev.php.attractgroup.com/public/", "Login", "Login");
+        UtilityStore.login(driver, "http://invoicedev.php.attractgroup.com/public/login", "pavel.a@attractgroup.com", "zombie");
+        Assert.assertTrue("Login is failed!", UtilityStore.checkTextPresence(driver, "Заказы на продажу"));
 
-        UtilityStore.documentFirstStep(driver, "http://invoicedev.php.attractgroup.com/public/document/add");
-        UtilityStore.checkTitle(driver, "http://invoicedev.php.attractgroup.com/public/document/show/238", "First step", "First step");
+        AddDocumentSteps.documentFirstStep(driver);
+
 
         UtilityStore.documentSecondStep(driver);
-        UtilityStore.checkTitle(driver, "http://invoicedev.php.attractgroup.com/public/document/show/238", "Second step", "Second step");
+
         Assert.assertTrue(true);
 
-      //  Assert.assertTrue(UtilityStore.checkTitle(driver,"Invoice"));
-       // Assert.assertTrue(UtilityStore.checkTextPresence(driver));
+        //  Assert.assertTrue(UtilityStore.checkTitle(driver,"Invoice"));
+        // Assert.assertTrue(UtilityStore.checkTextPresence(driver));
 
-      //  driver.close();
+        //  driver.close();
     }
-
-
 
 
 }
