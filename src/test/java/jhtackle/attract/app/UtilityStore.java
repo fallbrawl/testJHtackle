@@ -42,15 +42,6 @@ public class UtilityStore {
         }
     }
 
-    public static void documentFirstStep(WebDriver drv, String URL) {
-        drv.get(URL);
-        drv.findElement(By.id("s-name_user_info")).sendKeys("lllooool");
-        drv.findElement(By.id("b-name_user_info")).sendKeys("lllooool");
-        drv.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        drv.findElement(By.className("btn-primary")).click();
-
-    }
-
     public static void waitForWrapper(WebDriver wow, int howLong) {
         WebDriverWait wait = new WebDriverWait(wow, howLong);
 
@@ -61,62 +52,7 @@ public class UtilityStore {
         System.out.println("/n$$$$$$$$$$$$$$Loader has end his work!$$$$$$$$$$$$$$$$");
     }
 
-    public static void documentSecondStep(WebDriver drv) {
 
-        drv.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-
-        drv.findElement(By.name("file")).sendKeys("/home/paul/Desktop/2015-12-30-150350_1920x1080_scrot.pdf");
-        drv.findElement(By.className("icon_save_big")).click();
-
-        waitForWrapper(drv, 2);
-
-        WebElement smth = drv.findElement(By.className("fa-envelope"));
-        String smth1 = smth.getAttribute("Class");
-
-        System.out.println("$$$$$$$$$$$$$$Element is visible!$$$$$$$$$$$$$$$$ And the class is:" + smth1);
-        smth.click();
-
-        //Confirmin' document in manager's section
-
-        drv.get("invoicedev.php.attractgroup.com/public/accounting/manager");
-        drv.findElement(By.className("icon_check")).click();
-        drv.findElement(By.className("btn-success")).click();
-
-        //Gettin' back to document's attaching
-
-        drv.navigate().back();
-
-        waitForWrapper(drv, 2);
-
-        //drv.findElement(By.className("icon_in_big")).click();
-
-        waitForWrapper(drv, 2);
-
-
-        List<WebElement> needed_but = drv.findElements(By.className("btn-primary"));
-        System.out.println("Size of List: " + needed_but.size());
-        for (WebElement aNeeded_but : needed_but) {
-
-            System.out.println("Classes in List: " + aNeeded_but.getText());
-        }
-
-        WebElement wow = needed_but.get(2);
-        wow.click();
-
-        //Addin' item
-
-        waitForWrapper(drv, 2);
-        drv.findElement(By.id("autocomplete_document_product")).sendKeys("n", Keys.ARROW_DOWN, Keys.ENTER);
-        if ((drv.findElement(By.className("autocomplete-suggestion")).isDisplayed())) {
-            drv.findElement(By.id("autocomplete_document_product")).sendKeys(Keys.ARROW_DOWN);
-        }
-
-
-        drv.findElement(By.id("autocomplete_document_product")).sendKeys(Keys.ENTER);
-        drv.findElement(By.className("glyphicon-plus")).click();
-
-
-    }
 
 
 }

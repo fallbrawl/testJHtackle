@@ -19,7 +19,7 @@ public class TestinIt {
         AddDocumentSteps.documentFirstStep(driver);
 
 
-        UtilityStore.documentSecondStep(driver);
+        AddDocumentSteps.documentSecondStep(driver);
 
         Assert.assertTrue(true);
 
