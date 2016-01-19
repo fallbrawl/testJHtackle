@@ -50,11 +50,22 @@ public class UtilityStore {
         System.out.println("\n$$$$$$$$$$$$$$ " + classOfelementToWaitFor + " on the page " + drv.getCurrentUrl() + " has ended his work!$$$$$$$$$$$$$$$$");
     }
 
-    public static void waitForElementsPresence(WebDriver drv, int howLong, String classOfElementToWaitFor) {
+    public static void waitForElementsPresence(WebDriver drv, int howLong, String elementToWaitFor, char typeOfIdentifier) {
+
         WebDriverWait wait = new WebDriverWait(drv, howLong);
 
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.className(classOfElementToWaitFor)));
-        System.out.println("\n$$$$$$$$$$$$$$ " + classOfElementToWaitFor + " on the page " + drv.getCurrentUrl() + " is present!$$$$$$$$$$$$$$$$");
+        switch (typeOfIdentifier) {
+            case 'i':
+                wait.until(ExpectedConditions.presenceOfElementLocated(By.id(elementToWaitFor)));
+                break;
+            case 'c':
+                wait.until(ExpectedConditions.presenceOfElementLocated(By.className(elementToWaitFor)));
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid identifier: " + typeOfIdentifier);
+        }
+
+        System.out.println("\n$$$$$$$$$$$$$$ " + elementToWaitFor + " on the page " + drv.getCurrentUrl() + " is present!$$$$$$$$$$$$$$$$");
 
     }
 

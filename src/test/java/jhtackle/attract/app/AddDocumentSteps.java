@@ -14,6 +14,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class AddDocumentSteps {
 
+    final int timeToWaitForElement = 2;
     static String dateTime = UtilityStore.addDate();
 
     public static void documentFirstStep(WebDriver drv) {
@@ -31,7 +32,7 @@ public class AddDocumentSteps {
 
         drv.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         UtilityStore.waitForElementsAbsence(drv, 2, "loader_wrapper");
-        UtilityStore.uploadFile(drv, "file", "C:\\Users\\NEXUS\\Pictures\\wow.pdf");
+        UtilityStore.uploadFile(drv, "file", "/home/paul/Desktop/2015-12-30-150350_1920x1080_scrot.pdf");
 
         drv.findElement(By.className("icon_save_big")).click();
         UtilityStore.waitForElementsAbsence(drv, 2, "loader_wrapper");
@@ -47,7 +48,6 @@ public class AddDocumentSteps {
         drv.findElement(By.className("btn-success")).click();
         UtilityStore.waitForElementsAbsence(drv, 2, "loader_wrapper");
 
-
         //Gettin' back to document's attaching
 
         drv.navigate().back();
@@ -56,9 +56,9 @@ public class AddDocumentSteps {
         drv.findElement(By.className("icon_in_big")).click();
         UtilityStore.waitForElementsAbsence(drv, 2, "loader_wrapper");
 
-
         List<WebElement> neededBut = drv.findElements(By.className("btn-primary"));
         System.out.println("Size of List: " + neededBut.size());
+
         for (WebElement aNeededBut : neededBut) {
 
             System.out.println("Classes in List: " + aNeededBut.getText());
@@ -66,7 +66,6 @@ public class AddDocumentSteps {
 
         WebElement wow = neededBut.get(2);
         wow.click();
-
 
     }
 
@@ -76,13 +75,15 @@ public class AddDocumentSteps {
         //Addin' item
 
         UtilityStore.waitForElementsAbsence(drv, 2, "loader_wrapper");
-        drv.findElement(By.id("autocomplete_document_product")).sendKeys("n", Keys.ARROW_DOWN, Keys.ENTER);
-        UtilityStore.waitForElementsPresence(drv, 1, "autocomplete_document_product");
+        drv.findElement(By.id("autocomplete_document_product")).sendKeys("n");
+        UtilityStore.waitForElementsPresence(drv, 2, "autocomplete-suggestion", 'c');
+
         drv.findElement(By.id("autocomplete_document_product")).sendKeys(Keys.ARROW_DOWN);
         drv.findElement(By.id("autocomplete_document_product")).sendKeys(Keys.ENTER);
 
-        UtilityStore.waitForElementsAbsence(drv, 2, "loader_wrapper");
+        UtilityStore.waitForElementsPresence(drv, 2, "pull-right", 'c');
         drv.findElement(By.className("icon_plus")).click();
+
 
     }
 }
