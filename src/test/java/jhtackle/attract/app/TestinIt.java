@@ -19,8 +19,6 @@ public class TestinIt {
     {
         WebDriver driver = new FirefoxDriver();
 
-        UtilityStore.login(driver, "http://invoicedev.php.attractgroup.com/public/login", "pavel.a@attractgroup.com", "zombie");
-
         AddDocumentSteps.documentFirstStep(driver);
         AddDocumentSteps.documentSecondStep(driver);
         AddDocumentSteps.documentThirdStep(driver);

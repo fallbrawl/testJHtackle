@@ -15,11 +15,38 @@ import java.util.Date;
 
 public class UtilityStore {
 
-    public static void login(WebDriver drv, String URL, String email, String password) {
-        drv.get(URL);
-        drv.findElement(By.name("email")).sendKeys(email);
-        drv.findElement(By.name("password")).sendKeys(password);
-        drv.findElement(By.id("submit_form_button_login")).click();
+    public static void login(WebDriver drv, String role) {
+
+        if (role == "manager_buyer") {
+            drv.get("http://invoicedev.php.attractgroup.com/public/login");
+            drv.findElement(By.name("email")).sendKeys("pavel.a.manager.buyer@attractgroup.com");
+            drv.findElement(By.name("password")).sendKeys("attract");
+            drv.findElement(By.id("submit_form_button_login")).click();
+        } else if (role == "manager_seller") {
+            drv.get("http://invoicedev.php.attractgroup.com/public/login");
+            drv.findElement(By.name("email")).sendKeys("pavel.a.manager_sales@attractgroup.com");
+            drv.findElement(By.name("password")).sendKeys("attract");
+            drv.findElement(By.id("submit_form_button_login")).click();
+        } else if (role == "accounter") {
+            drv.get("http://invoicedev.php.attractgroup.com/public/login");
+            drv.findElement(By.name("email")).sendKeys("pavel.a.accounter@attractgroup.com");
+            drv.findElement(By.name("password")).sendKeys("attract");
+            drv.findElement(By.id("submit_form_button_login")).click();
+        } else if (role == "admin") {
+            drv.get("http://invoicedev.php.attractgroup.com/public/login");
+            drv.findElement(By.name("email")).sendKeys("pavel.a@attractgroup.com");
+            drv.findElement(By.name("password")).sendKeys("zombie");
+            drv.findElement(By.id("submit_form_button_login")).click();
+        } else {
+            throw new IllegalArgumentException("No such role of user!");
+        }
+
+    }
+
+    public static void logout(WebDriver drv) {
+        drv.findElement(By.className("account-dropdown")).click();
+        waitForElementsPresence(drv, 2, "dropdown-menu-right", 'c');
+        drv.findElement(By.linkText("Выйти")).click();
     }
 
     public static String addDate() {
